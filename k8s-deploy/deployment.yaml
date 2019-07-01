@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jslay-net
+spec:
+  replicas: 1
+  selector:
+  matchLabels:
+    app: jslay-net
+  template:
+    metadata:
+      labels:
+        app: jslay-net
+        version: $GIT_COMMIT
+    spec:
+      containers:
+      - name: jslay-net
+        image: docker.home.jslay.net/jslay/jslay.net:$BUILD_NUMBER
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: $KUBERNETES_SECRET_NAME
+  
