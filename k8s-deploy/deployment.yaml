@@ -5,8 +5,8 @@ metadata:
 spec:
   replicas: 1
   selector:
-  matchLabels:
-    app: jslay-net
+    matchLabels:
+      app: jslay-net
   template:
     metadata:
       labels:
