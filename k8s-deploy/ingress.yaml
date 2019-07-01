@@ -12,7 +12,7 @@ spec:
 #    - jslay.net
 #    secretName: jslay-net-tls
   rules:
-  - host:
+  - host: jslay.net
     http:
       paths:
       - path: /
