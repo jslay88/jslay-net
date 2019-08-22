@@ -64,9 +64,13 @@ spec:
 
         stage('Deploy Image') {
             steps {
-                kubernetesDeploy configs: 'k8s-deploy/*.yaml', dockerCredentials: [
-                [credentialsId: 'nexus-docker-push', url: 'https://docker.home.jslay.net']
-                ], kubeconfigId: 'jslay-k8s'
+                kubernetesDeploy(kubeconfigId: 'jslay-k8s',
+                                 configs: 'k8s-deploy/*.yaml', 
+                                 dockerCredentials: [[
+                                     credentialsId: 'nexus-docker-push', 
+                                     url: 'https://docker.home.jslay.net'
+                                     ]]
+                )
             }
         }
     }
