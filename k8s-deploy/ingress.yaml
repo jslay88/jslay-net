@@ -3,9 +3,10 @@ kind: Ingress
 metadata:
   name: jslay-net
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    certmanager.k8s.io/issuer: "letsencrypt"
-    certmanager.k8s.io/acme-challenge-type: "http01"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
+    cert-manager.io/issue-temporary-certificate: "true"
+    kubernetes.io/ingress.class: nginx
 spec:
   tls:
   - hosts:

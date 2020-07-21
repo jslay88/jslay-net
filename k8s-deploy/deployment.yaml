@@ -13,11 +13,24 @@ spec:
         app: jslay-net
         version: $GIT_COMMIT
     spec:
+      initContainers:
+        - name: builder
+          image: busybox:1.32.0
+          command: ['sh', '-c',
+                    "wget https://github.com/jslay88/jslay-net/archive/${GIT_COMMIT}.zip && \
+                    unzip -d /tmp ${GIT_COMMIT}.zip && \
+                    cp -R /tmp/jslay-net-${GIT_COMMIT}/site/* /nginx/"]
+          volumeMounts:
+            - mountPath: /nginx
+              name: site
       containers:
-      - name: jslay-net
-        image: docker.home.jslay.net/jslay/jslay.net:$BUILD_NUMBER
-        ports:
-        - containerPort: 80
-      imagePullSecrets:
-      - name: $KUBERNETES_SECRET_NAME
-  
+        - name: jslay-net
+          image: nginx:stable-alpine
+          ports:
+          - containerPort: 80
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
+              name: site
+      volumes:
+        - name: site
+          emptypDir: {}
