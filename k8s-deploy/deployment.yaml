@@ -11,15 +11,15 @@ spec:
     metadata:
       labels:
         app: jslay-net
-        version: ${GIT_COMMIT}
+        version: GIT_COMMIT
     spec:
       initContainers:
         - name: builder
           image: busybox:1.32.0
           command: ['sh', '-c',
-                    "wget https://github.com/jslay88/jslay-net/archive/${GIT_COMMIT}.zip && \
-                    unzip -d /tmp ${GIT_COMMIT}.zip && \
-                    cp -R /tmp/jslay-net-${GIT_COMMIT}/site/* /nginx/"]
+                    "wget https://github.com/jslay88/jslay-net/archive/GIT_COMMIT.zip && \
+                    unzip -d /tmp GIT_COMMIT.zip && \
+                    cp -R /tmp/jslay-net-GIT_COMMIT/site/* /nginx/"]
           volumeMounts:
             - mountPath: /nginx
               name: site
