@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: jslay-net
-        version: $GIT_COMMIT
+        version: ${GIT_COMMIT}
     spec:
       initContainers:
         - name: builder
