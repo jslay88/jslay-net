@@ -9,6 +9,11 @@ pipeline {
   }
   stages {
     stage('Deploy k8s YAMLs') {
+      when {
+        anyOf {
+          branch 'master'
+        }
+      }
       steps {
         script {
           docker.image('alpine/k8s:1.18.2').inside("-v $KUBECONFIG:/tmp/kubeconfig \
