@@ -9,7 +9,7 @@ pipeline {
         script {
           docker.image('alpine/k8s:1.18.2').inside("-v $KUBECONFIG:/tmp/kubeconfig -e KUBECONFIG=/tmp/kubeconfig --entrypoint=''") {
             sh """
-            GIT_COMMIT=${GIT_COMMIT}; kubectl apply --namespace jslay-net -f k8s-deploy/
+            sed -i s/\\${GIT_COMMIT}/$GIT_COMMIT/g k8s-deply/* && kubectl apply --namespace jslay-net -f k8s-deploy/
             """
           }
         }
