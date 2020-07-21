@@ -7,7 +7,7 @@ pipeline {
     stage('Deploy k8s YAMLs') {
       steps {
         script {
-          docker.image('alpine/helm:3.2.1').inside("-v $KUBECONFIG:/tmp/kubeconfig -e KUBECONFIG=/tmp/kubeconfig --entrypoint=''") {
+          docker.image('alpine/k8s:1.18.2').inside("-v $KUBECONFIG:/tmp/kubeconfig -e KUBECONFIG=/tmp/kubeconfig --entrypoint=''") {
             sh """
             GIT_COMMIT=${GIT_COMMIT}; kubectl apply -f k8s-deploy/
             """
