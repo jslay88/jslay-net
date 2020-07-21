@@ -25,6 +25,7 @@ pipeline {
             sed -i s/COPY_DIR/$COPY_DIR/g k8s-deploy/* && \
             sed -i s/HOST/$HOST/g k8s-deploy/* && \
             sed -i s/GIT_COMMIT/$GIT_COMMIT/g k8s-deploy/* && \
+            kubectl create namespace $REPO_NAME & \
             kubectl apply --namespace $REPO_NAME -f k8s-deploy/
             """
           }
