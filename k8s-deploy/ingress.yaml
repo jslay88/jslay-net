@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: jslay-net
+  name: REPO_NAME
   annotations:
     acme.cert-manager.io/http01-edit-in-place: "true"
     cert-manager.io/cluster-issuer: letsencrypt
@@ -10,14 +10,14 @@ metadata:
 spec:
   tls:
   - hosts:
-    - jslay.net
-    secretName: jslay-net-tls
+    - HOST
+    secretName: REPO_NAME-tls
   rules:
-  - host: jslay.net
+  - host: HOST
     http:
       paths:
       - path: /
         backend:
-         serviceName: jslay-net
+         serviceName: REPO_NAME
          servicePort: 80
     

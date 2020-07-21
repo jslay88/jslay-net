@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jslay-net
+  name: REPO_NAME
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jslay-net
+      app: REPO_NAME
   template:
     metadata:
       labels:
-        app: jslay-net
+        app: REPO_NAME
         version: GIT_COMMIT
     spec:
       initContainers:
@@ -24,7 +24,7 @@ spec:
             - mountPath: /nginx
               name: site
       containers:
-        - name: jslay-net
+        - name: REPO_NAME
           image: nginx:stable-alpine
           ports:
           - containerPort: 80
