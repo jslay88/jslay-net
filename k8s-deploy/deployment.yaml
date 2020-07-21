@@ -33,4 +33,4 @@ spec:
               name: site
       volumes:
         - name: site
-          emptypDir: {}
+          emptyDir: {}
