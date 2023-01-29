@@ -1,0 +1,24 @@
+# Overrides for cfpb/static-site
+init:
+  method: git
+  git:
+    repository: https://github.com/jslay88/jslay-net.git
+    ref: master
+    subPath: site
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
+    cert-manager.io/issue-temporary-certificate: "true"
+  hosts:
+    - host: jslay.net
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: tls
+      hosts:
+        - jslay.net
